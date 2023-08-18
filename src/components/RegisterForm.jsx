@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -40,6 +42,13 @@ const RegisterForm = () => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form data:', formData);
+    createUserWithEmailAndPassword(auth, 'akhilesh@gmail.com', '123456')
+    .then((cred)=> {
+        console.log(cred)
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
   };
 
   return (
@@ -171,7 +180,7 @@ const RegisterForm = () => {
               ))}
             </select>
           </div>
-          <button
+          <button onClick={handleSubmit}
             className='px-2 py-1 mx-auto text-white bg-green-400'
             type='submit'
           >
