@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
 import hello from "../assets/hello.svg";
 import Usefade from "./UseFade";
 import axios from "axios";
 import useStore from "../store/store";
 
 const RegisterForm = () => {
-
-    const { updateToken, identity, setIdentity, accessToken } = useStore((state)=> ({updateToken: state.updateToken, identity: state.identity, setIdentity: state.setIdentity, accessToken: state.accessToken}))
+    const [selectedDep, setSelectedDep] = useState({});
+    const { updateToken, identity, setIdentity, accessToken } = useStore(
+        (state) => ({
+            updateToken: state.updateToken,
+            identity: state.identity,
+            setIdentity: state.setIdentity,
+            accessToken: state.accessToken,
+        })
+    );
 
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
-        phoneNumber: "",
+        phone: "",
         workTimings: "",
-        companyName: "",
+        gender: "",
         department: "",
-        role: "",
     });
 
     const workTimingsOptions = [
@@ -48,38 +57,72 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log("Form data:", formData);
+        // console.log(selectedDep);
+        // // Handle form submission here
+        // console.log("Form data:", formData);
         createUserWithEmailAndPassword(auth, formData.email, formData.password)
             .then((cred) => {
                 console.log(cred.user.accessToken);
-                updateToken(cred._tokenResponse.idToken, cred._tokenResponse.refreshToken)
-                // axios.post(`https://gta-alpha.vercel.app/auth/signup`, {
-                //     "name": "yasar",
-                //     "phone": "12313",
-                //     "gender": "Male",
-                //     "worktime": "9 to 5",
-                //     "dep_id": 1
-                // }, {
-                //     headers: {
-                //         'Authorization': cred.user.accessToken,
-                //         'Content-Type': 'application/json'
-                //     }
-                // })
-                // .then((response)=> {
-                //     setLoad(false)
-                //     setSuc(true)
-                //     setTimeout(()=> setLoader(false), 3000)
-                // })
-                // .catch(()=> {
-                //     setLoad(false)
-                //     setErr(true)
-                //     setTimeout(()=> setLoader(false), 3000)
-                // })
+                axios
+                    .post(
+                        `https://gta-alpha.vercel.app/auth/signup`,
+                        {
+                            name: formData.name,
+                            phone: formData.phone,
+                            gender: formData.gender,
+                            worktime: formData.workTimings,
+                            dep_id: selectedDep.dep_id,
+                        },
+                        {
+                            headers: {
+                                Authorization: cred.user.accessToken,
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        updateToken(
+                            cred._tokenResponse.idToken,
+                            cred._tokenResponse.refreshToken
+                        );
+                    })
+                    .catch(() => {
+                        return <h1>Error</h1>;
+                    });
             })
             .catch((err) => {
                 console.log(err);
             });
+    };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        signInWithEmailAndPassword(
+            auth,
+            formData.email,
+            formData.password
+        ).then((cred) => {
+            axios
+                .get(`https://gta-alpha.vercel.app/auth/signin`, {
+                    headers: {
+                        Authorization: cred.user.accessToken,
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then((response) => {
+                    console.log(response);
+                    setIdentity(response.data.result[0]);
+                    updateToken(
+                        cred._tokenResponse.idToken,
+                        cred._tokenResponse.refreshToken
+                    );
+                    console.log(cred._tokenResponse.idToken);
+                    setIdentity(response.data.result[0]);
+                })
+                .catch(() => {
+                    return <h1>Error</h1>;
+                });
+        });
     };
 
     const [depts, setDepts] = useState([]);
@@ -148,8 +191,8 @@ const RegisterForm = () => {
                                     <input
                                         className="shadow appearance-none border rounded-2xl w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         type="tel"
-                                        name="phoneNumber"
-                                        id="phoneNumber"
+                                        name="phone"
+                                        id="phone"
                                         placeholder="Phone Number"
                                         onChange={handleInputChange}
                                     />
@@ -158,9 +201,9 @@ const RegisterForm = () => {
                                     <input
                                         className="shadow appearance-none border rounded-2xl w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         type="text"
-                                        name="companyName"
-                                        id="companyName"
-                                        placeholder="Company Name"
+                                        name="gender"
+                                        id="gender"
+                                        placeholder="Gender"
                                         onChange={handleInputChange}
                                     />
                                 </div>
@@ -169,14 +212,20 @@ const RegisterForm = () => {
                                         className="shadow appearance-none border rounded-2xl w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         name="department"
                                         id="department"
-                                        onChange={handleInputChange}
-                                        value={formData.department}
+                                        onChange={(e) =>
+                                            setSelectedDep(
+                                                JSON.parse(e.target.value)
+                                            )
+                                        }
                                     >
                                         <option value="">
                                             Select Department
                                         </option>
                                         {depts.map((option) => (
-                                            <option key={option} value={option}>
+                                            <option
+                                                key={option}
+                                                value={JSON.stringify(option)}
+                                            >
                                                 {option.dep_name}
                                             </option>
                                         ))}
@@ -211,7 +260,7 @@ const RegisterForm = () => {
                         </Usefade>
 
                         <Usefade isActive={isLogin}>
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleLogin}>
                                 <div className="my-6">
                                     <input
                                         className="shadow appearance-none border rounded-2xl w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -233,7 +282,7 @@ const RegisterForm = () => {
                                     />
                                 </div>
                                 <button
-                                    onClick={handleSubmit}
+                                    onClick={handleLogin}
                                     className="mx-auto text-white rounded-2xl px-6 py-4 w-full mt-4 bg-blue-950"
                                     type="submit"
                                 >

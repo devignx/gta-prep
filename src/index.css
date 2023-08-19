@@ -19,19 +19,24 @@ body {
     margin: 0;
     font-family: "Plus Jakarta Sans" !important;
     height: 100vh;
+    font-weight: 600;
     background-attachment: fixed;
     overflow-y: scroll;
 }
 
 .shad {
     box-shadow: 0px 71.7391357421875px 119.56521606445312px 0px
-        rgba(0, 0, 0, 0.5);
+        rgba(0, 0, 0, 0.1);
 }
 .grad {
     background: linear-gradient(180deg, #e1f8ff 0%, #539cff 100%), #fff;
 }
 ::-webkit-scrollbar {
     display: none;
+}
+
+.grad-warm {
+    background: linear-gradient(180deg, #ffdfe0 0%, #e7b9ff 100%);
 }
 
 /*---------------HP Classics---------------*/

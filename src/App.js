@@ -1,6 +1,8 @@
 import RegisterForm from "./components/RegisterForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import { Profiler } from "react";
+import Profile from "./pages/Profile";
 function App() {
     return (
         <div>
@@ -9,6 +11,7 @@ function App() {
                 <Routes>
                     <Route element={<Home />} path="/" />
                     <Route element={<RegisterForm />} path="/login" />
+                    <Route element={<Profile />} path="/profile" />
                 </Routes>
             </BrowserRouter>
         </div>
