@@ -4,8 +4,12 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import hello from "../assets/hello.svg";
 import Usefade from "./UseFade";
 import axios from "axios";
+import useStore from "../store/store";
 
 const RegisterForm = () => {
+
+    const { updateToken, identity, setIdentity, accessToken } = useStore((state)=> ({updateToken: state.updateToken, identity: state.identity, setIdentity: state.setIdentity, accessToken: state.accessToken}))
+
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
@@ -48,7 +52,30 @@ const RegisterForm = () => {
         console.log("Form data:", formData);
         createUserWithEmailAndPassword(auth, formData.email, formData.password)
             .then((cred) => {
-                console.log(cred);
+                console.log(cred.user.accessToken);
+                updateToken(cred._tokenResponse.idToken, cred._tokenResponse.refreshToken)
+                // axios.post(`https://gta-alpha.vercel.app/auth/signup`, {
+                //     "name": "yasar",
+                //     "phone": "12313",
+                //     "gender": "Male",
+                //     "worktime": "9 to 5",
+                //     "dep_id": 1
+                // }, {
+                //     headers: {
+                //         'Authorization': cred.user.accessToken,
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                // .then((response)=> {
+                //     setLoad(false)
+                //     setSuc(true)
+                //     setTimeout(()=> setLoader(false), 3000)
+                // })
+                // .catch(()=> {
+                //     setLoad(false)
+                //     setErr(true)
+                //     setTimeout(()=> setLoader(false), 3000)
+                // })
             })
             .catch((err) => {
                 console.log(err);
