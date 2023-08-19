@@ -1,20 +1,20 @@
-import hello from "../assets/hello.svg";
+import { useState } from "react";
 import RegisterForm from "../components/RegisterForm";
 import Usefade from "../components/UseFade";
 
 export default function Home() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     return (
-        <Usefade isActive={true}>
-            <div className="flex flex-wrap lg:flex-nowrap w-full lg:overflow-y-hidden">
-                <div className="flex w-full justify-center lg:overflow-y-hidden items-center">
-                    <img
-                        className="w-[15rem] mt-12 lg:mt-0 lg:w-[25rem]"
-                        src={hello}
-                        alt="hello"
-                    />
-                </div>
+        <>
+            <Usefade isActive={!isLoggedIn}>
                 <RegisterForm />
-            </div>
-        </Usefade>
+            </Usefade>
+
+            <Usefade isActive={isLoggedIn}>
+                <div className="flex gap ">
+                    <div></div>
+                </div>
+            </Usefade>
+        </>
     );
 }
