@@ -7,7 +7,7 @@ import { TbInfoSquareRoundedFilled } from "react-icons/tb";
 
 export default function Feeling() {
     return (
-        <div className="w-full md:w-[20rem] text-center text-2xl relative bg-white p-12 px-8 shad rounded-2xl">
+        <div className="min-w-[20rem] text-center text-2xl relative bg-white p-12 px-8 shad rounded-2xl">
             <div className="absolute text-pri/50 top-3 right-3">
                 <Tooltip text={"This starts your assessment"} />
             </div>

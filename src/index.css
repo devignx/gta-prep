@@ -24,6 +24,27 @@ body {
     overflow-y: scroll;
 }
 
+.starry {
+    background: linear-gradient(180deg, #1e252f 0%, #270639 100%),
+        linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+.zengarden {
+    background: linear-gradient(180deg, #47827a 0%, #063936 100%),
+        linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+.beach {
+    background: linear-gradient(180deg, #b3815a 0%, #765026 100%),
+        linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+.forest {
+    background: linear-gradient(180deg, #478250 0%, #063936 100%),
+        linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+.tibet {
+    background: linear-gradient(180deg, #824752 0%, #390622 100%),
+        linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
 .shad {
     box-shadow: 0px 71.7391357421875px 119.56521606445312px 0px
         rgba(0, 0, 0, 0.1);
@@ -35,6 +56,11 @@ body {
     display: none;
 }
 
+.shad-blu {
+    filter: drop-shadow(
+        0px 4.510638236999512px 22.553192138671875px rgba(83, 156, 255, 0.53)
+    );
+}
 .grad-warm {
     background: linear-gradient(180deg, #ffdfe0 0%, #e7b9ff 100%);
 }

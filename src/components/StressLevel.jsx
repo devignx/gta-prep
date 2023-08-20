@@ -3,8 +3,14 @@ import peassad from "../assets/peas-sad.png";
 import peas from "../assets/peas.png";
 import Tooltip from "../components/Tooltip";
 export default function StressLevel() {
-    const [level, setLevel] = useState("higher");
-    const [stressPercent, setStressPercent] = useState(22);
+    const [
+        level,
+        // setLevel
+    ] = useState("higher");
+    const [
+        stressPercent,
+        // setStressPercent
+    ] = useState(22);
 
     return (
         <div className="w-full md:w-[20rem] text-center text-2xl relative bg-white p-12 px-8 shad rounded-2xl">

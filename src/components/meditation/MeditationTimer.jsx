@@ -1,21 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
+import useStore from "../../store/store";
+import { FaPause, FaPlay, FaStop } from "react-icons/fa";
 
 const audioMap = {
-    "Zen Garden": "zen-garden.mp3",
-    "Starry Night": "starry-night.mp3",
-    "Beach Meditation": "beach-waves.mp3",
-    "Forest Retreat": "forest-retreat.mp3",
-    "Tibetan Singing Bowls": "tibetan-bowl.mp3",
+    zengarden: "zen-garden.mp3",
+    starry: "starry-night.mp3",
+    beach: "beach-waves.mp3",
+    forest: "forest-retreat.mp3",
+    tibet: "tibetan-bowl.mp3",
 };
 
-function MeditationTimer({ theme, duration, onFinish }) {
+function MeditationTimer({ myTheme, duration, onFinish }) {
     const [remainingTime, setRemainingTime] = useState(duration * 60);
     const [isPaused, setIsPaused] = useState(false);
     const audioRef = useRef(null);
+    const {
+        // updateToken, identity, setIdentity,
+        accessToken,
+        theme,
+    } = useStore((state) => ({
+        updateToken: state.updateToken,
+        identity: state.identity,
+        setIdentity: state.setIdentity,
+        accessToken: state.accessToken,
+        theme: state.theme,
+    }));
 
     useEffect(() => {
         if (!audioRef.current) {
-            const newAudio = new Audio(`/${audioMap[theme]}`);
+            const newAudio = new Audio(`/beach-waves.mp3}`);
             newAudio.loop = true;
             audioRef.current = newAudio;
         }
@@ -33,7 +46,7 @@ function MeditationTimer({ theme, duration, onFinish }) {
         } else {
             audioRef.current.pause();
         }
-    }, [theme, isPaused]);
+    }, [myTheme, isPaused]);
 
     useEffect(() => {
         if (isPaused && audioRef.current) {
@@ -71,24 +84,29 @@ function MeditationTimer({ theme, duration, onFinish }) {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-md w-96">
-                <h2 className="text-lg font-medium mb-2">{theme}</h2>
-                <p className="text-gray-600 mb-4">
-                    Remaining Time: {formatTime(remainingTime)}
+        <div className={`p-12 rounded-2xl flex`}>
+            <div className="">
+                <h2 className="text-6xl text-white font-medium mb-2">
+                    {theme}
+                </h2>
+                <p className="text-white/30 mb-4">
+                    Remaining Time:
+                    <p className="text-[10rem]">{formatTime(remainingTime)}</p>
                 </p>
-                <button
-                    className="bg-blue-500 text-white py-2 px-4 rounded-md w-full"
-                    onClick={handlePauseResume}
-                >
-                    {isPaused ? "Resume" : "Pause"}
-                </button>
-                <button
-                    className="bg-red-500 text-white py-2 px-4 rounded-md w-full mt-2"
-                    onClick={handleFinish}
-                >
-                    Finish Meditation
-                </button>
+                <div className="flex gap-8">
+                    <button
+                        className={` ${theme} w-16 h-16 flex justify-center items-center text-white py-2 px-4 rounded-full`}
+                        onClick={handlePauseResume}
+                    >
+                        {isPaused ? <FaPlay /> : <FaPause />}
+                    </button>
+                    <button
+                        className={` ${theme} w-16 h-16 flex justify-center items-center text-white py-2 px-4 rounded-full`}
+                        onClick={handleFinish}
+                    >
+                        <FaStop />
+                    </button>
+                </div>
             </div>
         </div>
     );

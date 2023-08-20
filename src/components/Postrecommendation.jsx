@@ -8,14 +8,22 @@ export default function PostRecommendation() {
             link: "https://www.google.com",
         },
         {
-            name: "Love & Lust",
+            name: "Fire & Ice",
+            link: "https://www.google.com",
+        },
+        {
+            name: "Man & Dog",
+            link: "https://www.google.com",
+        },
+        {
+            name: "Blue & Purple",
             link: "https://www.google.com",
         },
     ];
     return (
         <div className="w-full md:w-[20rem] min-h-[25rem] text-center text-2xl relative bg-white p-12 px-8 shad rounded-2xl">
             <div className="absolute text-pri/50 top-3 right-3">
-                <Tooltip text={"These will help ypu to make your day better"} />
+                <Tooltip text={"These will help you to make your day better"} />
             </div>
             <p>Here are some posts that you would love reading today</p>
             <div className="flex gap-4 text-lg mt-8 absolute left-0 px-6 overflow-x-scroll w-full first-letter:">
@@ -35,7 +43,7 @@ export default function PostRecommendation() {
                 })}
             </div>
             <button className="bg-pri absolute bottom-12 centerh w-10/12 text-white px-6 py-3 rounded-full mt-8  text-base font-medium">
-                View in Detail
+                View All
             </button>
         </div>
     );

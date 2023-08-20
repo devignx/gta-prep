@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MeditationTimer from "./MeditationTimer";
+import useStore from "../../store/store";
 
 const themes = [
-    "Zen Garden",
-    "Starry Night",
-    "Beach Meditation",
-    "Forest Retreat",
-    "Tibetan Singing Bowls",
+    { name: "Starry Night", class: "starry" },
+    { name: "Zen Garden", class: "zengarden" },
+    { name: "Beach Meditation", class: "beach" },
+    { name: "Forest Retreat", class: "forest" },
+    { name: "Tibetan Singing Bowls", class: "tibet" },
 ];
 
 const durations = [5, 10, 20, 30];
 
 function MeditationApp() {
+    useEffect(() => {
+        console.log(theme);
+    });
     const [selectedTheme, setSelectedTheme] = useState("");
     const [selectedDuration, setSelectedDuration] = useState(5);
     const [meditationStarted, setMeditationStarted] = useState(false);
 
+    const { theme, setTheme } = useStore((state) => ({
+        theme: state.theme,
+        setTheme: state.setTheme,
+    }));
+
     const handleThemeChange = (event) => {
         setSelectedTheme(event.target.value);
+        setTheme(event.target.value);
     };
 
     const handleDurationChange = (event) => {
@@ -43,45 +53,46 @@ function MeditationApp() {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-md w-96">
-                <h1 className="text-2xl font-semibold mb-4">
-                    Meditation Theme Selector
-                </h1>
-                <label className="block mb-2 font-medium">
-                    Choose a Meditation Theme:
-                </label>
-                <select
-                    className="block w-full p-2 border rounded-md mb-4"
-                    onChange={handleThemeChange}
-                >
-                    <option value="">Select a theme</option>
-                    {themes.map((theme, index) => (
-                        <option key={index} value={theme}>
-                            {theme}
-                        </option>
-                    ))}
-                </select>
-                <label className="block mb-2 font-medium">
-                    Select Meditation Duration:
-                </label>
-                <select
-                    className="block w-full p-2 border rounded-md mb-4"
-                    onChange={handleDurationChange}
-                >
-                    {durations.map((duration, index) => (
-                        <option key={index} value={duration}>
-                            {duration} minutes
-                        </option>
-                    ))}
-                </select>
-                <button
-                    className="bg-blue-500 text-white py-2 px-4 rounded-md w-full"
-                    onClick={handleStartMeditation}
-                >
-                    Start Meditation
-                </button>
-            </div>
+        <div className="p-12">
+            <h1
+                style={{ color: theme === "default" ? "black" : "white" }}
+                className={`text-5xl text-white font-semibold mb-4`}
+            >
+                Choose your Vibe
+            </h1>
+            <select
+                className={`px-6 py-5 w-full bg-transparent outline-none border-white md:w-4/6 block border mt-12 rounded-full mb-4`}
+                onChange={handleThemeChange}
+            >
+                <option className="p-4 m-4 text-black" value="">
+                    Select a theme
+                </option>
+                {themes.map((theme, index) => (
+                    <option
+                        key={index}
+                        className="p-3 text-black"
+                        value={theme.class}
+                    >
+                        {theme.name}
+                    </option>
+                ))}
+            </select>
+            <select
+                className="px-6 py-5 w-full bg-transparent border-white md:w-4/6 block border mt-8 rounded-full mb-4"
+                onChange={handleDurationChange}
+            >
+                {durations.map((duration, index) => (
+                    <option key={index} value={duration}>
+                        {duration} minutes
+                    </option>
+                ))}
+            </select>
+            <button
+                className="bg-white w-full md:w-4/6 mt-8 text-black border  py-6 block px-4 rounded-full"
+                onClick={handleStartMeditation}
+            >
+                Start Meditation
+            </button>
         </div>
     );
 }

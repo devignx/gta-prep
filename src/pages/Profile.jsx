@@ -1,7 +1,5 @@
+import Linechart from "../components/LineChart";
+
 export default function Profile() {
-    return (
-        <div>
-            <h1>Profile</h1>
-        </div>
-    );
+    return <div>{/* <Linechart /> */}</div>;
 }
