@@ -13,9 +13,6 @@ const themes = [
 const durations = [5, 10, 20, 30];
 
 function MeditationApp() {
-    useEffect(() => {
-        console.log(theme);
-    });
     const [selectedTheme, setSelectedTheme] = useState("");
     const [selectedDuration, setSelectedDuration] = useState(5);
     const [meditationStarted, setMeditationStarted] = useState(false);

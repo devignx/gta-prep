@@ -2,6 +2,7 @@ import { useState } from "react";
 import peassad from "../assets/peas-sad.png";
 import peas from "../assets/peas.png";
 import Tooltip from "../components/Tooltip";
+import { Link } from "react-router-dom";
 export default function StressLevel() {
     const [
         level,
@@ -30,9 +31,12 @@ export default function StressLevel() {
             >
                 {stressPercent}%
             </h2>
-            <button className="bg-pri text-white px-6 py-3 rounded-full mt-8 text-base font-medium w-full">
+            <Link
+                to="/profile"
+                className="bg-pri block text-white px-6 py-3 rounded-full mt-8 text-base font-medium w-full"
+            >
                 View in Detail
-            </button>
+            </Link>
         </div>
     );
 }

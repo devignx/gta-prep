@@ -1,11 +1,19 @@
 import React from "react";
+import useStore from "../../store/store";
 
 const ZenCards = ({ selectedCategory, randomTask }) => {
+    const { theme } = useStore((state) => ({
+        theme: state.theme,
+    }));
     return (
-        <div className="mt-4">
-            <div className="bg-white rounded-lg p-6 shadow-md w-96">
-                <p className="text-gray-700">{randomTask}</p>
-            </div>
+        <div>
+            <p
+                className={`text-6xl  p-8 mt-7 ml-5 ${
+                    theme === "default" ? "text-black" : "text-white"
+                } `}
+            >
+                {randomTask}
+            </p>
         </div>
     );
 };

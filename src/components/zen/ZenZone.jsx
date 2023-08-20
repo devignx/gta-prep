@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cards from "./ZenCards";
+import Usefade from "../UseFade";
 
 const ZenZone = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -66,18 +67,24 @@ const ZenZone = () => {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="grid grid-cols-2 gap-4">
-                {Object.keys(categoriesData).map((category) => (
-                    <div
-                        key={category}
-                        className={`bg-blue-500 hover:bg-blue-600 rounded-lg p-4 cursor-pointer text-center text-white`}
-                        onClick={() => handleCategoryClick(category)}
-                    >
-                        {category}
-                    </div>
-                ))}
-            </div>
+        <div
+            className={` ${
+                !selectedCategory && "flex justify-center items-center h-screen"
+            }`}
+        >
+            <Usefade isActive={!selectedCategory}>
+                <div className="flex w-10/12 mx-auto gap-6 justify-center flex-wrap items-start">
+                    {Object.keys(categoriesData).map((category) => (
+                        <div
+                            key={category}
+                            className={`bg-white text-black h-fit border shrink-0 p-8 mt-7 ml-5 px-6 rounded-full cursor-pointer text-center`}
+                            onClick={() => handleCategoryClick(category)}
+                        >
+                            {category}
+                        </div>
+                    ))}
+                </div>
+            </Usefade>
             {selectedCategory && (
                 <Cards
                     selectedCategory={selectedCategory}

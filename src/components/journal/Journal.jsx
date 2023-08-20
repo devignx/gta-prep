@@ -1,7 +1,10 @@
-// src/components/JournalPage.js
 import React, { useState, useEffect } from "react";
+import useStore from "../../store/store";
 
 const Journal = () => {
+    const { theme } = useStore((state) => ({
+        theme: state.theme,
+    }));
     const [journalEntries, setJournalEntries] = useState([]);
     const [newEntry, setNewEntry] = useState("");
     const [expandedEntry, setExpandedEntry] = useState(null);
@@ -39,17 +42,21 @@ const Journal = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto mt-8 p-4">
+        <div
+            className={` ${
+                theme === "default" ? "text-black" : "text-white"
+            } max-w-4xl mx-auto mt-8 p-4`}
+        >
             <h2 className="text-3xl font-bold mb-4">Capture your Thoughts</h2>
             <textarea
-                className="w-full p-2 border border-gray-300 rounded-md mb-4"
+                className="w-full text-black p-2 border rounded-md mb-4"
                 rows="4"
                 value={newEntry}
                 onChange={(e) => setNewEntry(e.target.value)}
                 placeholder="Write your journal entry here..."
             />
             <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+                className="bg-white text-black border font-semibold py-2 px-4 rounded"
                 onClick={handleAddEntry}
             >
                 Add Entry
@@ -73,7 +80,7 @@ const Journal = () => {
                         </p>
                         {entry.length > 100 && (
                             <button
-                                className="text-blue-600 hover:underline mt-2"
+                                className="text-black bg-white border hover:underline mt-2"
                                 onClick={() => handleExpandEntry(index)}
                             >
                                 {expandedEntry === index
