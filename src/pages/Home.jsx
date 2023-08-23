@@ -85,16 +85,8 @@ export default function Home() {
             </Usefade> */}
 
             <Usefade isActive={true}>
-                <div className="flex flex-wrap p-8 justify-between md:p-16">
-                    <div className="flex w-full md:w-[50%] flex-wrap gap-6">
-                        <StressLevel />
-                        <PostRecommendation />
-                        <Feeling />
-                        <div onClick={() => setRenderedComp("ques")}>
-                            <QuesCard />
-                        </div>
-                    </div>
-
+                <div className="flex flex-wrap p-8 justify-center md:p-16">
+            
                     <div
                         className={`w-full mt-12 md:mt-0 relative md:w-[45%] h-[80vh] pl-4 rounded-2xl ${
                             theme === "default" ? "bg-white" : theme
@@ -104,7 +96,7 @@ export default function Home() {
                             onClick={() =>
                                 renderedComp !== "nav"
                                     ? setRenderedComp("nav")
-                                    : setRenderedComp("userchart")
+                                    : setRenderedComp("")
                             }
                             className="absolute flex justify-center items-center bg-white text-3xl rounded-full shad-blu w-16 h-16 text-pri -bottom-8 centerh"
                         >
@@ -118,16 +110,12 @@ export default function Home() {
                         {renderedComp === "nav" && <Nav />}
 
                         {renderedComp === "meditation" && <MeditationApp />}
-                        {renderedComp === "linechart" && <Linechart />}
+                      
                         {renderedComp === "help" && <ContactsPage />}
                         {renderedComp === "zen" && <ZenZone />}
                         {renderedComp === "journal" && <Journal />}
-                        {renderedComp === "ques" && <Questionnaire />}
-                        {renderedComp === "userchart" && (
-                            <div className="p-3 -ml-4">
-                                <UserChart employeeData={data.employees} />
-                            </div>
-                        )}
+                      
+                      
                     </div>
                 </div>
             </Usefade>
