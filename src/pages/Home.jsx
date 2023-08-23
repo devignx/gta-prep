@@ -1,21 +1,13 @@
 import { useState } from "react";
-import RegisterForm from "../components/RegisterForm";
 import Usefade from "../components/UseFade";
 import useStore from "../store/store";
-import Feeling from "../components/Feeling";
-import StressLevel from "../components/StressLevel";
-import Linechart from "../components/LineChart";
-import PostRecommendation from "../components/Postrecommendation";
 import MeditationApp from "../components/meditation/MeditationApp";
-import UserChart from "../components/UserChart";
-import data from "../components/employee.json";
 import smiley from "../assets/smiley.svg";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import ContactsPage from "../components/GetHelp";
 import ZenZone from "../components/zen/ZenZone";
 import Journal from "../components/journal/Journal";
-import Questionnaire from "../components/Questionaire";
-import QuesCard from "../components/QuesCard";
+import Hello from "../components/Hello";
 
 export default function Home() {
     const Nav = () => {
@@ -37,7 +29,7 @@ export default function Home() {
                     }}
                     className="px-6 py-5 w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
-                    Mediatation
+                    Meditation
                 </button>
                 <button
                     onClick={() => {
@@ -65,7 +57,7 @@ export default function Home() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [choice, setChoice] = useState("zen");
-    const [renderedComp, setRenderedComp] = useState("userchart");
+    const [renderedComp, setRenderedComp] = useState("hello");
     const {
         // updateToken, identity, setIdentity,
         accessToken,
@@ -88,7 +80,7 @@ export default function Home() {
                 <div className="flex flex-wrap p-8 justify-center md:p-16">
             
                     <div
-                        className={`w-full mt-12 md:mt-0 relative md:w-[45%] h-[80vh] pl-4 rounded-2xl ${
+                        className={`w-full relative md:w-[45%] md:h-[80vh] h-auto rounded-2xl ${
                             theme === "default" ? "bg-white" : theme
                         } `}
                     >
@@ -96,7 +88,7 @@ export default function Home() {
                             onClick={() =>
                                 renderedComp !== "nav"
                                     ? setRenderedComp("nav")
-                                    : setRenderedComp("")
+                                    : setRenderedComp("hello")
                             }
                             className="absolute flex justify-center items-center bg-white text-3xl rounded-full shad-blu w-16 h-16 text-pri -bottom-8 centerh"
                         >
@@ -108,12 +100,11 @@ export default function Home() {
                         </button>
 
                         {renderedComp === "nav" && <Nav />}
-
                         {renderedComp === "meditation" && <MeditationApp />}
-                      
                         {renderedComp === "help" && <ContactsPage />}
                         {renderedComp === "zen" && <ZenZone />}
                         {renderedComp === "journal" && <Journal />}
+                        {renderedComp === "hello" && <Hello />}
                       
                       
                     </div>

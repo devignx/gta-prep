@@ -28,7 +28,9 @@ function MeditationTimer({ myTheme, duration, onFinish }) {
 
     useEffect(() => {
         if (!audioRef.current) {
-            const newAudio = new Audio(`/beach-waves.mp3}`);
+            console.log(myTheme)
+            const newAudio = new Audio(`/${audioMap[myTheme]}`);
+            console.log(newAudio)
             newAudio.loop = true;
             audioRef.current = newAudio;
         }

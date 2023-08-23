@@ -42,7 +42,7 @@ function MeditationApp() {
     if (meditationStarted) {
         return (
             <MeditationTimer
-                theme={selectedTheme}
+                myTheme={selectedTheme}
                 duration={selectedDuration}
                 onFinish={handleFinishMeditation}
             />

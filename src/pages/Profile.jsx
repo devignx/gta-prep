@@ -1,4 +1,3 @@
-import Linechart from "../components/LineChart";
 import UserChart from "../components/UserChart";
 import data from "../components/employee.json";
 
