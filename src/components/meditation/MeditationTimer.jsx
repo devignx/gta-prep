@@ -86,14 +86,14 @@ function MeditationTimer({ myTheme, duration, onFinish }) {
     };
 
     return (
-        <div className={`p-12 rounded-2xl flex`}>
+        <div className={`p-12  h-[60vh] rounded-2xl flex justify-center items-center `}>
             <div className="">
-                <h2 className="text-6xl text-white font-medium mb-2">
+                <h2 className="text-2xl md:text-6xl text-white font-medium mb-2">
                     {theme}
                 </h2>
-                <p className="text-white/30 mb-4">
+                <p className="text-white/30  mb-4">
                     Remaining Time:
-                    <p className="text-[10rem]">{formatTime(remainingTime)}</p>
+                    <p className="md:text-[10rem] text-[rem] ">{formatTime(remainingTime)}</p>
                 </p>
                 <div className="flex gap-8">
                     <button

@@ -53,7 +53,7 @@ function MeditationApp() {
         <div className="p-12">
             <h1
                 style={{ color: theme === "default" ? "black" : "white" }}
-                className={`text-5xl text-white font-semibold mb-4`}
+                className={`md:text-5xl text-white font-semibold mb-4`}
             >
                 Choose your Vibe
             </h1>
