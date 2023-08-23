@@ -12,7 +12,7 @@ import Hello from "../components/Hello";
 export default function Home() {
     const Nav = () => {
         return (
-            <div className="flex flex-wrap topppp gap-6 w-1/2 absolute centerrr mx-auto items-end justify-center">
+            <div className="flex flex-wrap topppp gap-6 w-1/2  h-auto absolute centerrr mx-auto items-end justify-center">
                 <button
                     onClick={() => {
                         setRenderedComp("zen");
@@ -80,7 +80,7 @@ export default function Home() {
                 <div className="flex flex-wrap p-8 justify-center md:p-16">
             
                     <div
-                        className={`w-full relative md:w-[45%] md:h-[80vh] h-auto rounded-2xl ${
+                        className={`w-full  relative md:w-[45%] md:h-[80vh] h-[80vh] rounded-2xl ${
                             theme === "default" ? "bg-white" : theme
                         } `}
                     >
