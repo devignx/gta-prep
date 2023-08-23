@@ -8,7 +8,7 @@ const ZenCards = ({ selectedCategory, randomTask }) => {
     return (
         <div>
             <p
-                className={`text-6xl  p-8 mt-7 ml-5 ${
+                className={`md:text-6xl  p-8 mt-7 ml-5 ${
                     theme === "default" ? "text-black" : "text-white"
                 } `}
             >

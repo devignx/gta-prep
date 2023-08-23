@@ -80,7 +80,7 @@ export default function Home() {
                 <div className="flex flex-wrap p-8 justify-center md:p-16">
             
                     <div
-                        className={`w-full  relative md:w-[45%] md:h-[80vh] h-auto rounded-2xl ${
+                        className={`w-full  relative md:w-[45%] md:h-[80vh] min-h-[80vh] h-auto rounded-2xl ${
                             theme === "default" ? "bg-white" : theme
                         } `}
                     >
