@@ -4,11 +4,12 @@ import useStore from "../store/store";
 import MeditationApp from "../components/meditation/MeditationApp";
 import smiley from "../assets/smiley.svg";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import ContactsPage from "../components/GetHelp";
+import ContactsPage from "../components/About";
 import ZenZone from "../components/zen/ZenZone";
 import Journal from "../components/journal/Journal";
 import Hello from "../components/Hello";
 import Uplift from "../components/uplift/Uplift";
+import About from "../components/About";
 
 export default function Home() {
     const Nav = () => {
@@ -46,23 +47,23 @@ export default function Home() {
                 <button
                     onClick={() => {
                         {
-                            setRenderedComp("help");
+                            setRenderedComp("journal");
                             setChoice(false);
                         }
                     }}
                     className="p-5 w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
-                    Get Help
+                    My Journal
                 </button>
                 </div>
                 <button
                     onClick={() => {
-                        setRenderedComp("journal");
+                        setRenderedComp("about");
                         setChoice(false);
                     }}
                     className="p-5  w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
-                    My Journal
+                    About this app
                 </button>
             </div>
         );
@@ -114,7 +115,7 @@ export default function Home() {
 
                         {renderedComp === "nav" && <Nav />}
                         {renderedComp === "meditation" && <MeditationApp />}
-                        {renderedComp === "help" && <ContactsPage />}
+                        {renderedComp === "about" && <About />}
                         {renderedComp === "zen" && <ZenZone />}
                         {renderedComp === "journal" && <Journal />}
                         {renderedComp === "hello" && <Hello />}
