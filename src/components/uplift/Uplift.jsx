@@ -241,15 +241,15 @@ const Uplift = () => {
     return (
         <div
             className={` ${
-                !selectedCategory && "flex justify-center items-center h-screen"
+                !selectedCategory && "flex justify-center items-center md:h-screen"
             }`}
         >
             <Usefade isActive={!selectedCategory}>
-                <div className="flex h-full p-4  w-full justify-center flex-wrap gap-4">
+                <div className="flex md:h-full h-[70vh] overflow-scroll  p-4  w-full justify-center flex-wrap gap-4 mb-24">
                     {Object.keys(categoriesData).map((category) => (
                         <div
                             key={category}
-                            className={`bg-white text-black border  p-4  hover:bg-blue-100 rounded-full cursor-pointer text-center`}
+                            className={`bg-white flex items-center text-black border  p-4 text-sm md:text-lg  hover:bg-blue-100 rounded-xl cursor-pointer text-center`}
                             onClick={() => handleCategoryClick(category)}
                         >
                             {category}

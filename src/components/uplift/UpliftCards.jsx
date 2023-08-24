@@ -6,13 +6,14 @@ const UpliftCards = ({ selectedCategory, randomQuote }) => {
         theme: state.theme,
     }));
     return (
-        <div>
+        <div className=" h-[70vh] overflow-y-auto  flex justify-center items-center">
             <p
-                className={`md:text-6xl  p-8 mt-7 ml-5 ${
+                className={`md:text-6xl  text-3xl p-8 md:mt-6 ml-5 ${
                     theme === "default" ? "text-black" : "text-white"
                 } `}
             >
                 {randomQuote}
+                
             </p>
         </div>
     );

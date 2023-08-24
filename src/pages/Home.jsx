@@ -13,8 +13,9 @@ import Uplift from "../components/uplift/Uplift";
 export default function Home() {
     const Nav = () => {
         return (
-            <div className="flex flex-wrap  gap-6 w-1/2  h-auto absolute centerrr mx-auto items-end justify-center">
-                <button
+            <div className="flex flex-col gap-6 w-full  h-[60vh] mt-10  items-center justify-center">
+              
+              <div className="flex md:flex-row  flex-col gap-4 md:gap-6 justify-center items-center"><button
                     onClick={() => {
                         setRenderedComp("zen");
                         setChoice(false);
@@ -31,7 +32,8 @@ export default function Home() {
                     className="p-5 w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
                     Meditation
-                </button>
+                </button></div>
+                <div className="flex md:flex-row  flex-col gap-4 md:gap-6 justify-center items-center">
                 <button
                     onClick={() => {
                         setRenderedComp("uplift");
@@ -52,6 +54,7 @@ export default function Home() {
                 >
                     Get Help
                 </button>
+                </div>
                 <button
                     onClick={() => {
                         setRenderedComp("journal");
@@ -90,7 +93,7 @@ export default function Home() {
                 <div className="flex flex-wrap p-8 justify-center md:p-16">
             
                     <div
-                        className={`w-full relative md:w-[45%] md:h-[80vh] min-h-[80vh] h-auto rounded-2xl  ${
+                        className={`w-full p-4 relative md:w-[45%] md:h-[80vh] h-[80vh] rounded-2xl  ${
                             theme === "default" ? "bg-white" : theme
                         } `}
                     >
