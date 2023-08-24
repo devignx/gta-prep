@@ -50,18 +50,18 @@ function MeditationApp() {
     }
 
     return (
-        <div className="p-12">
+        <div className="md:p-12 p-6 flex flex-col justify-center items-center h-[80vh]">
             <h1
                 style={{ color: theme === "default" ? "black" : "white" }}
-                className={`md:text-5xl text-white font-semibold mb-4`}
+                className={`md:text-5xl text-3xl text-center text-white font-semibold mb-4`}
             >
                 Choose your Vibe
             </h1>
             <select
-                className={`px-6 py-5 w-full bg-transparent outline-none border-white md:w-4/6 block border mt-12 rounded-full mb-4`}
+                className={`md:px-6 md:py-5 p-4  w-full bg-transparent outline-none border-white md:w-4/6 block border mt-12 rounded-full mb-4`}
                 onChange={handleThemeChange}
             >
-                <option className="p-4 m-4 text-black" value="">
+                <option className="m-4 text-black" value="">
                     Select a theme
                 </option>
                 {themes.map((theme, index) => (
@@ -75,7 +75,7 @@ function MeditationApp() {
                 ))}
             </select>
             <select
-                className="px-6 py-5 w-full bg-transparent border-white md:w-4/6 block border mt-8 rounded-full mb-4"
+                className="md:px-6 md:py-5 p-4 w-full bg-transparent border-white md:w-4/6 block border mt-8 rounded-full mb-4"
                 onChange={handleDurationChange}
             >
                 {durations.map((duration, index) => (
@@ -85,7 +85,7 @@ function MeditationApp() {
                 ))}
             </select>
             <button
-                className="bg-white w-full md:w-4/6 mt-8 text-black border  py-6 block px-4 rounded-full"
+                className="bg-white w-full md:w-4/6 mt-8 text-black border  md:py-6 p-4 block px-4 rounded-full"
                 onClick={handleStartMeditation}
             >
                 Start Meditation

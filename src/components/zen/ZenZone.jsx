@@ -73,11 +73,11 @@ const ZenZone = () => {
             }`}
         >
             <Usefade isActive={!selectedCategory}>
-                <div className="flex h-full mt-0 w-full p-6 justify-center items-center flex-wrap gap-6">
+                <div className="flex h-[80vh] md:h-full  w-full p-4 justify-center items-center overflow flex-wrap gap-2">
                     {Object.keys(categoriesData).map((category) => (
                         <div
                             key={category}
-                            className={`bg-white text-black border  p-8  hover:bg-blue-100 rounded-full cursor-pointer text-center`}
+                            className={`bg-white text-black border  p-5  hover:bg-blue-100 rounded-full cursor-pointer text-center hover:bg-blue-10`}
                             onClick={() => handleCategoryClick(category)}
                         >
                             {category}

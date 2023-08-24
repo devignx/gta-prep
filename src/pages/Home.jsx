@@ -8,17 +8,18 @@ import ContactsPage from "../components/GetHelp";
 import ZenZone from "../components/zen/ZenZone";
 import Journal from "../components/journal/Journal";
 import Hello from "../components/Hello";
+import Uplift from "../components/uplift/Uplift";
 
 export default function Home() {
     const Nav = () => {
         return (
-            <div className="flex flex-wrap topppp gap-6 w-1/2  h-auto absolute centerrr mx-auto items-end justify-center">
+            <div className="flex flex-wrap  gap-6 w-1/2  h-auto absolute centerrr mx-auto items-end justify-center">
                 <button
                     onClick={() => {
                         setRenderedComp("zen");
                         setChoice(false);
                     }}
-                    className="px-6 py-5 w-fit h-fit shad-blu bg-white rounded-2xl"
+                    className="p-5 w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
                     Zen Mode
                 </button>
@@ -27,9 +28,18 @@ export default function Home() {
                         setRenderedComp("meditation");
                         setChoice(false);
                     }}
-                    className="px-6 py-5 w-fit h-fit shad-blu bg-white rounded-2xl"
+                    className="p-5 w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
                     Meditation
+                </button>
+                <button
+                    onClick={() => {
+                        setRenderedComp("uplift");
+                        setChoice(false);
+                    }}
+                    className="p-5 w-fit h-fit shad-blu bg-white rounded-2xl"
+                >
+                    Uplift Yourself
                 </button>
                 <button
                     onClick={() => {
@@ -38,7 +48,7 @@ export default function Home() {
                             setChoice(false);
                         }
                     }}
-                    className="px-6 py-5 w-fit h-fit shad-blu bg-white rounded-2xl"
+                    className="p-5 w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
                     Get Help
                 </button>
@@ -47,7 +57,7 @@ export default function Home() {
                         setRenderedComp("journal");
                         setChoice(false);
                     }}
-                    className="px-6 py-5 w-fit h-fit shad-blu bg-white rounded-2xl"
+                    className="p-5  w-fit h-fit shad-blu bg-white rounded-2xl"
                 >
                     My Journal
                 </button>
@@ -80,7 +90,7 @@ export default function Home() {
                 <div className="flex flex-wrap p-8 justify-center md:p-16">
             
                     <div
-                        className={`w-full  relative md:w-[45%] md:h-[80vh] min-h-[80vh] h-auto rounded-2xl ${
+                        className={`w-full relative md:w-[45%] md:h-[80vh] min-h-[80vh] h-auto rounded-2xl  ${
                             theme === "default" ? "bg-white" : theme
                         } `}
                     >
@@ -105,6 +115,7 @@ export default function Home() {
                         {renderedComp === "zen" && <ZenZone />}
                         {renderedComp === "journal" && <Journal />}
                         {renderedComp === "hello" && <Hello />}
+                        {renderedComp === "uplift" && <Uplift />}
                       
                       
                     </div>

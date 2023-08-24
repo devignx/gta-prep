@@ -6,15 +6,15 @@ const ZenCards = ({ selectedCategory, randomTask }) => {
         theme: state.theme,
     }));
     return (
-        <div>
-            <p
-                className={`md:text-6xl  p-8 mt-7 ml-5 ${
+            <div
+                className={`text-center h-[80vh] flex justify-center items-center  w-full md:text-6xl text-3xl md:p-8 p-4  ${
                     theme === "default" ? "text-black" : "text-white"
                 } `}
             >
-                {randomTask}
-            </p>
-        </div>
+                 {randomTask}
+               
+            </div>
+        
     );
 };
 

@@ -86,16 +86,17 @@ function MeditationTimer({ myTheme, duration, onFinish }) {
     };
 
     return (
-        <div className={`p-12  h-[60vh] rounded-2xl flex justify-center items-center `}>
-            <div className="">
-                <h2 className="text-2xl md:text-6xl text-white font-medium mb-2">
+        <div className={`p-12  h-[80vh] rounded-2xl flex flex-col justify-center items-center `}>
+            
+                <h2 className="text-4xl md:text-6xl text-white font-medium mb-2 flex justify-center">
                     {theme}
                 </h2>
-                <p className="text-white/30  mb-4">
+                <p className="text-white/30 text-xl  mb-4 mt-4 ">
                     Remaining Time:
-                    <p className="md:text-[10rem] text-[rem] ">{formatTime(remainingTime)}</p>
+                   
                 </p>
-                <div className="flex gap-8">
+                <div className="md:text-[8rem] w-[90%] text-white/30 text-5xl flex justify-center md:mb-16 mb-8 ">{formatTime(remainingTime)}</div>
+                <div className="flex flex-wrap justify-center md:gap-20 gap-6">
                     <button
                         className={` ${theme} w-16 h-16 flex justify-center items-center text-white py-2 px-4 rounded-full`}
                         onClick={handlePauseResume}
@@ -110,7 +111,6 @@ function MeditationTimer({ myTheme, duration, onFinish }) {
                     </button>
                 </div>
             </div>
-        </div>
     );
 }
 
